@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Города</title>
+</head>
+<body>
+    <h1>Города</h1>
+    {% if cities %}
+        <ul>
+            {% for city in cities %}
+                <li>{{city}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from datetime import datetime
+from .models import *
 
 
 # Create your views here.
@@ -29,10 +30,11 @@ def about(request):
 def contact(request):
     return render(request, "hello/contact.html")
 
+
 def branches(request, country_name=""):
     if country_name == "":
         country_name = " всех городах"
-    return render(request, 'hello/branches.html',{'country_name':country_name})
+    return render(request, 'hello/branches.html', {'country_name': country_name})
 
 
 def page_not_found(request, exception=None):
@@ -41,6 +43,6 @@ def page_not_found(request, exception=None):
     return response
 
 
-
-
-
+def cities(request):
+    query_set = City.objects.all()
+    return render(request, "hello/cities.html", {"cities": query_set})
