@@ -1,0 +1,11 @@
+{% extends "hello/base.html" %}
+{% block content %}
+<h1>{{ name_of_page }}</h1>
+{% if query_set %}
+<ul>
+    {% for obj in query_set %}
+    <li>{{obj}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
