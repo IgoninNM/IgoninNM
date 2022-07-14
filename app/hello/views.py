@@ -22,7 +22,16 @@ def page_not_found(request, exception=None):
 
 
 def cities(request):
-    query_set = City.objects.all()
+    if 'city' in request.GET and 'year' in request.GET:
+        query_set = Event.objects.filter(city__slug=request.GET['city'], year__slug=request.GET['city'])
+    else:
+        query_set = City.objects.all()
+
+    # if slug:
+    #     query_set = City.objects.filter(slug=slug)
+    # else:
+    #     query_set = City.objects.all()
+
     return render(request, "hello/page.html", {
         "query_set": query_set,
         "name_of_page": "Города"
@@ -42,4 +51,31 @@ def facts(request):
     return render(request, "hello/page.html", {
         "query_set": query_set,
         "name_of_page": "События"
+    })
+
+
+def article_city(request, place):
+    event_place = City.objects.get(slug=place)
+    events = Event.objects.filter(city=event_place.id)
+    return render(request, "hello/detali_page.html", {
+        "events": events
+    })
+
+
+def article_history(request, year):
+    event_year = Year.objects.get(slug=year)
+    events = Event.objects.filter(year=event_year.id)
+
+    return render(request, "hello/detali_page.html", {
+        "events": events
+    })
+
+
+def article_city_history(request, year, place):
+    event_year = Year.objects.get(slug=year)
+    event_place = City.objects.get(slug=place)
+    events = Event.objects.filter(city=event_place.id, year=event_year.id)
+
+    return render(request, "hello/detali_page.html", {
+        "events": events
     })

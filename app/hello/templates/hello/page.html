@@ -4,7 +4,7 @@
 {% if query_set %}
 <ul>
     {% for obj in query_set %}
-    <li>{{obj}}</li>
+    <li><a href="{{ obj.slug }}">{{obj}}</a></li>
     {% endfor %}
 </ul>
 {% endif %}

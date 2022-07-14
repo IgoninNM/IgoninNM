@@ -19,6 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('hello.urls')),
+    path('recipes/', include('recipes.urls'))
 ]
 
 handler404 = 'hello.views.page_not_found'

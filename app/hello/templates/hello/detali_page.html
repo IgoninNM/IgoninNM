@@ -1,0 +1,9 @@
+{% extends "hello/base.html" %}
+
+{% block content %}
+{% for event in events %}
+<h1>{{ event.title }}</h1>
+<p>{{ event.article }}</p>
+{% endfor %}
+
+{% endblock %}
